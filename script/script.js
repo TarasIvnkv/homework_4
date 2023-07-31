@@ -5,7 +5,8 @@ cheeseBurger = 15;
 smallPotato = 10;
 middlePotato = 15;
 bigPotato = 20;
-additive = ``;
+ketchup = 2;
+mayonnaise = 3;
 
 bun = prompt(`hamburger or cheeseburger?`);
 if((bun !== `hamburger` && bun !== `cheeseburger`) || !bun){
@@ -14,8 +15,8 @@ if((bun !== `hamburger` && bun !== `cheeseburger`) || !bun){
     if(bun === `hamburger`){
         orderPrice += hamburger;
     } else if(bun === `cheeseburger`){
-        additive = confirm(`Would you like to add double cheese?`);
-        if(additive === true){
+        cheese = confirm(`Would you like to add double cheese?`);
+        if(cheese === true){
             orderPrice = doubleCheese + cheeseBurger;
         }else{
             orderPrice += cheeseBurger;
@@ -38,6 +39,22 @@ if(potato === true){
         orderPrice += middlePotato;
     }else if(potatoSize === `big`){
         orderPrice += bigPotato;
+    }
+}
+
+sauce = confirm(`Would you like sauce?`);
+if(sauce === true){
+    sauceType = prompt(`Choose sauce: ketchup/mayonnaise`);
+    if(
+        sauceType === `ketchup`
+        && (sauceType === ``
+        || sauceType === false 
+        || sauceType !== `ketchup` 
+        || sauceType !== `mayonnaise`)
+    ){
+        orderPrice += ketchup;
+    }else if(sauceType === `mayonnaise`){
+        orderPrice += mayonnaise;
     }
 }
 
