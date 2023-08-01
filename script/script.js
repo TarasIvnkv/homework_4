@@ -1,61 +1,94 @@
-orderPrice = 0;
-doubleCheese = 5;
-hamburger = 10;
-cheeseBurger = 15;
-smallPotato = 10;
-middlePotato = 15;
-bigPotato = 20;
-ketchup = 2;
-mayonnaise = 3;
+hamburger = `hamburger`;
+cheeseburger = `cheeseburger`;
 
-bun = prompt(`hamburger or cheeseburger?`);
-if((bun !== `hamburger` && bun !== `cheeseburger`) || !bun){
-    orderPrice += hamburger;
-} else{
-    if(bun === `hamburger`){
-        orderPrice += hamburger;
-    } else if(bun === `cheeseburger`){
-        cheese = confirm(`Would you like to add double cheese?`);
-        if(cheese === true){
-            orderPrice = doubleCheese + cheeseBurger;
-        }else{
-            orderPrice += cheeseBurger;
-        }
+hamburgerPrice = 10;
+cheeseburgerPrice = 15;
+
+doubleCheesePrice = 5;
+
+smallPotato = `small`;
+middlePotato = `middle`;
+bigPotato = `big`;
+
+smallPotatoPrice = 10;
+middlePotatoPrice = 15;
+bigPotatoPrice = 20;
+
+ketchup = `ketchup`;
+mayonnaise = `mayonnaise`;
+
+ketchupPrice = 2;
+mayonnaisePrice = 3;
+
+orderPrice = 0;
+
+bun = prompt(`Would you like ${hamburger} or ${cheeseburger}?`);
+if(bun !== null){
+    bun = bun.replaceAll(` `, ``).toLowerCase();
+}
+
+if(bun === cheeseburger){
+    orderPrice += cheeseburgerPrice;
+}else{
+    bun = hamburger;
+    orderPrice += hamburgerPrice;
+}
+
+if(bun === cheeseburger){
+    doubleCheese = confirm(`Would you like to add double cheese?`);
+    if(doubleCheese){
+        orderPrice += doubleCheesePrice;
     }
 }
 
 potato = confirm(`Would you like potato?`);
-if(potato === true){
-    potatoSize = prompt(`Choose potato size: small/middle/big`)
-    if(
-        potatoSize === `small`
-        && (potatoSize === ``
-        || potatoSize === false 
-        || potatoSize !== `middle` 
-        || potatoSize !== `big`)
-        ){
-        orderPrice += smallPotato;
-    }else if(potatoSize === `middle`){
-        orderPrice += middlePotato;
-    }else if(potatoSize === `big`){
-        orderPrice += bigPotato;
+if(potato){
+    potatoSize = prompt(`Choose potato size: ${smallPotato}/${middlePotato}/${bigPotato}`);
+
+    if(potatoSize !== null){
+        potatoSize = potatoSize.replaceAll(` `, ``).toLowerCase();
+    }
+
+    if(potatoSize === middlePotato){
+        orderPrice += middlePotatoPrice;
+    }else if(potatoSize === bigPotato){
+        orderPrice += bigPotatoPrice;
+    }else{
+        potatoSize = smallPotato;
+        orderPrice += smallPotatoPrice;
     }
 }
 
 sauce = confirm(`Would you like sauce?`);
-if(sauce === true){
-    sauceType = prompt(`Choose sauce: ketchup/mayonnaise`);
-    if(
-        sauceType === `ketchup`
-        && (sauceType === ``
-        || sauceType === false 
-        || sauceType !== `ketchup` 
-        || sauceType !== `mayonnaise`)
-    ){
-        orderPrice += ketchup;
-    }else if(sauceType === `mayonnaise`){
-        orderPrice += mayonnaise;
+if(sauce){
+    sauceType = prompt(`Choose sauce: ${ketchup}/${mayonnaise}`);
+
+    if(sauceType !== null){
+        sauceType = sauceType.replaceAll(` `, ``).toLowerCase();
+    }
+
+    if(sauceType === mayonnaise){
+        orderPrice += mayonnaisePrice;
+    }else{
+        sauceType = ketchup;
+        orderPrice += ketchupPrice;
     }
 }
 
-console.log(`${orderPrice}$`);
+if(potato) confirmPotato = `<li>Potato 🍟: ${potatoSize}</li>`;
+else confirmPotato = ``;
+
+if(sauce) confirmSauce = `<li>Sauce 🧂: ${sauceType}</li>`;
+else confirmSauce = ``;
+
+document.write(`
+    <div>
+        <h2>Your order:</h2>
+        <ul>
+            <li>Bulka 🍔: ${bun} </li>
+            ${confirmPotato}
+            ${confirmSauce}
+        </ul>
+        <p>Price: ${orderPrice}$ </p>
+    </div>
+`);

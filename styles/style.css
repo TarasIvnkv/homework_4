@@ -41,3 +41,26 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+div{
+	margin: 40px;
+	background: rgb(132, 132, 172);
+	padding: 20px;
+	width: 400px;
+}
+
+h2{
+	font-size: 26px;
+	font-weight: 700;
+}
+ul{
+	margin: 10px 0 10px;
+}
+
+ul li, p{
+	font-size: 18px;
+}
+
+p{
+	font-weight: 700;
+}
